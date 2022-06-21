@@ -241,6 +241,20 @@ colorspaces:
     allocationvars: [-8, 5, 0.00390625]
     to_reference: !<MatrixTransform> {matrix: [1.04981, 0, -9.74845e-05, 0, -0.495903, 1.37331, 0.09824, 0, 0, 0, 0.991252, 0, 0, 0, 0, 1]}
     from_reference: !<MatrixTransform> {matrix: [0.952552, 0, 9.36786e-05, 0, 0.343966, 0.728166, -0.0721325, 0, 0, 0, 1.00883, 0, 0, 0, 0, 1]}
+  
+  - !<ColorSpace>
+    name: Utility - Look - Blue Light Artifact Fix
+    family: Utility/Look
+    equalitygroup: ""
+    bitdepth: 32f
+    description: |
+      The ACES Look Transform: Blue Light Artifact Fix
+      
+      ACES Transform ID : urn:ampas:aces:transformId:v1.5:LMT.Academy.BlueLightArtifactFix.a1.1.0
+    isdata: false
+    allocation: lg2
+    allocationvars: [-8, 5, 0.00390625]
+    to_reference: !<MatrixTransform> {matrix: [0.940437, -0.0183069, 0.0778696, 0, 0.0083787, 0.82866, 0.162961, 0, 0.000547126, -0.000883375, 1.00034, 0, 0, 0, 0, 1], direction: inverse}
 
   # Blender compatibility
   - !<ColorSpace>
