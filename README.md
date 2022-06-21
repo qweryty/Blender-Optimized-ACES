@@ -1,5 +1,11 @@
-ACES 1.2 OpenColorIO configuration
+Blender optimized ACES 1.2 OpenColorIO configuration
 =
+
+About optimizations
+-
+
+- Removed most colorspaces that are rarely used within blender so it would be easier to select from dropdown list
+- Added colorspaces with same names as in original blender configs to preserve compatibility with assets created in vanilla blender
 
 Information about ACES
 -
