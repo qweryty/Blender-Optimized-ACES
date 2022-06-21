@@ -5,7 +5,14 @@ About optimizations
 -
 
 - Removed most ACES colorspaces that are rarely used within blender so it would be easier to select from dropdown list
-- Added colorspaces with same names as in original blender configs to preserve compatibility with assets created in vanilla blender
+- Added alias colorspaces with same names as in original blender configs to preserve compatibility with assets created in vanilla blender
+  - `sRGB` - alias to `Utility - sRGB - Texture`
+  - `Linear` - alias to `Utility - XYZ - D60`
+  - `Linear ACES` - same as `ACES - ACES2065-1`
+  - `Linear ACEScg` - alias to `ACES - ACEScg`
+  - `XYZ` - alias to `Utility - XYZ - D60`
+  - `Non-Color` - same as `Utility - Raw`
+  - `Raw` - same as `Utility - Raw`
 
 **Attention!** This config doesn't aim to replicate the exact looks of vanilla blender, but to make transition to ACES workflow as painless as possible. Your older files **will** look different with this config, but this is intended behaviour.
 
