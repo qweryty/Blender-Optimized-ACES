@@ -7,7 +7,7 @@ About optimizations
 - Removed most ACES colorspaces that are rarely used within blender so it would be easier to select from dropdown list
 - Added alias colorspaces with same names as in original blender configs to preserve compatibility with assets created in vanilla blender
   - `sRGB` - alias to `Utility - sRGB - Texture`
-  - `Linear` - alias to `Utility - XYZ - D60`
+  - `Linear` - alias to `Utility - Linear - sRGB`
   - `Linear ACES` - same as `ACES - ACES2065-1`
   - `Linear ACEScg` - alias to `ACES - ACEScg`
   - `XYZ` - alias to `Utility - XYZ - D60`
