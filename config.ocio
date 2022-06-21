@@ -27,14 +27,11 @@ roles:
   # Default color space for float images
   default_float: ACES - ACEScg
 
-  # TODO
   # Default color space sequencer is working in
   # default_sequencer: sRGB
-  # default_sequencer: Output - sRGB
 
-  # TODO
   # For interop between configs, and to determine XYZ for rendering
-  # aces_interchange: Linear ACES
+  aces_interchange: ACES - ACES2065-1
 
 displays:
   ACES:
@@ -231,12 +228,87 @@ colorspaces:
     isdata: true
     allocation: uniform
     allocationvars: [0, 1]
+  
+  - !<ColorSpace>
+    name: Utility - XYZ - D60
+    family: Utility
+    equalitygroup: XYZ - D60
+    bitdepth: 32f
+    description: |
+      The XYZ - D60 color space
+    isdata: false
+    allocation: lg2
+    allocationvars: [-8, 5, 0.00390625]
+    to_reference: !<MatrixTransform> {matrix: [1.04981, 0, -9.74845e-05, 0, -0.495903, 1.37331, 0.09824, 0, 0, 0, 0.991252, 0, 0, 0, 0, 1]}
+    from_reference: !<MatrixTransform> {matrix: [0.952552, 0, 9.36786e-05, 0, 0.343966, 0.728166, -0.0721325, 0, 0, 0, 1.00883, 0, 0, 0, 0, 1]}
 
   # Blender compatibility
   - !<ColorSpace>
+    name: Linear
+    family: linear
+    equalitygroup:
+    bitdepth: 32f
+    description: |
+      The Linear - sRGB color space
+    isdata: false
+    allocation: lg2
+    allocationvars: [-8, 5, 0.00390625]
+    # Replacing Rec.709 with Linear sRGB as more appropriate for HDRI in ACES workflow
+    from_reference: !<ColorSpaceTransform> {src: ACES - ACES2065-1, dst: Utility - Linear - sRGB}
+
+  - !<ColorSpace>
+    name: Raw
+    family: raw
+    equalitygroup: Raw
+    bitdepth: 32f
+    description: |
+      The Raw color space
+    isdata: true
+    allocation: uniform
+    allocationvars: [0, 1]
+  
+  - !<ColorSpace>
+    name: Linear ACES
+    family: linear
+    equalitygroup:
+    bitdepth: 32f
+    description: |
+      The Academy Color Encoding System reference color space
+    isdata: false
+    allocation: lg2
+    allocationvars: [-8, 5, 0.00390625]
+
+  - !<ColorSpace>
+    name: Linear ACEScg
+    family: linear
+    equalitygroup:
+    bitdepth: 32f
+    description: |
+      The ACEScg color space
+      
+      ACES Transform ID : ACEScsc.Academy.ACEScg_to_ACES
+    isdata: false
+    allocation: lg2
+    allocationvars: [-8, 5, 0.00390625]
+    to_reference: !<ColorSpaceTransform> {src: ACES - ACEScg, dst: ACES - ACES2065-1}
+
+  - !<ColorSpace>
+    name: XYZ
+    family: linear
+    equalitygroup:
+    bitdepth: 32f
+    description: |
+      The XYZ - D60 color space
+    isdata: false
+    allocation: lg2
+    allocationvars: [-8, 5, 0.00390625]
+    to_reference: !<ColorSpaceTransform> {src: Utility - XYZ - D60, dst: ACES - ACES2065-1}
+    from_reference: !<ColorSpaceTransform> {src: ACES - ACES2065-1, dst: Utility - XYZ - D60}
+
+  - !<ColorSpace>
     name: sRGB
-    family: Utility/Aliases
-    equalitygroup: sRGB - Texture
+    family:
+    equalitygroup:
     bitdepth: 32f
     description: |
       The sRGB - Texture color space
@@ -244,37 +316,14 @@ colorspaces:
     allocation: uniform
     allocationvars: [0, 1]
     from_reference: !<ColorSpaceTransform> {src: ACES - ACES2065-1, dst: Utility - sRGB - Texture}
-  
-  - !<ColorSpace>
-    name: Raw
-    family: Utility
-    equalitygroup: Raw
-    bitdepth: 32f
-    description: |
-      The Raw color space
-    isdata: true
-    allocation: uniform
-    allocationvars: [0, 1]
 
   - !<ColorSpace>
     name: Non-Color
-    family: Utility
-    equalitygroup: Raw
+    family: raw
+    equalitygroup:
     bitdepth: 32f
     description: |
       The Raw color space
     isdata: true
     allocation: uniform
     allocationvars: [0, 1]
-
-  - !<ColorSpace>
-    name: Linear
-    family: Utility/Aliases
-    equalitygroup: Linear - sRGB
-    bitdepth: 32f
-    description: |
-      The Linear - sRGB color space
-    isdata: false
-    allocation: lg2
-    allocationvars: [-8, 5, 0.00390625]
-    from_reference: !<ColorSpaceTransform> {src: ACES - ACES2065-1, dst: Utility - Linear - sRGB}
