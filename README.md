@@ -23,6 +23,8 @@ Missing color spaces:
 - Linear CIE-XYZ E
 - Linear DCI-P3 D65
 - Linear FilmLight E-Gamut
+- Rec.1886
+- Rec.2020
 
 **Attention!** This config doesn't aim to replicate the exact looks of vanilla blender, but to make transition to ACES workflow as painless as possible. Your older files **will** look different with this config, but this is intended behaviour.
 
